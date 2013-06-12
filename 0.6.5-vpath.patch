@@ -1,0 +1,36 @@
+--- origsrc/typespeed-0.6.5/testsuite/Makefile.am	2008-08-13 09:36:51.000000000 -0500
++++ src/typespeed-0.6.5/testsuite/Makefile.am	2013-06-11 22:02:59.754779500 -0500
+@@ -1,5 +1,5 @@
+ CC = gcc
+-AM_CFLAGS = -I../src -Wall -W -pedantic -std=c99
++AM_CFLAGS = -I$(top_srcdir)/src -Wall -W -pedantic -std=c99
+ 
+ localedir = $(datadir)/locale
+ AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\" -DTVERSION=\"v$(VERSION)\" -DTEST
+@@ -22,20 +22,20 @@ t_unescstr_SOURCES = t_unescstr.c
+ nodist_t_unescstr_SOURCES = file.c menu.c misc.c network.c typespeed.c
+ 
+ file.o: ../src/file.c ../src/pathnames.h ../src/typespeed.h
+-	$(COMPILE) -c ../src/file.c
++	$(COMPILE) -c $<
+ 
+ menu.o: ../src/menu.c ../src/typespeed.h
+-	$(COMPILE) -c ../src/menu.c
++	$(COMPILE) -c $<
+ 
+ misc.o: ../src/misc.c ../src/typespeed.h
+-	$(COMPILE) -c ../src/misc.c
++	$(COMPILE) -c $<
+ 
+ misc-ctest.o: ../src/misc.c ../src/typespeed.h
+-	$(COMPILE) -DCOLORTEST -c -o misc-ctest.o ../src/misc.c
++	$(COMPILE) -DCOLORTEST -c -o misc-ctest.o $<
+ 
+ network.o: ../src/network.c ../src/typespeed.h
+-	$(COMPILE) -c ../src/network.c
++	$(COMPILE) -c $<
+ 
+ typespeed.o: ../src/typespeed.c
+-	$(COMPILE) -DTEST -c ../src/typespeed.c
++	$(COMPILE) -DTEST -c $<
+ 
